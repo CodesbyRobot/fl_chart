@@ -50,21 +50,24 @@ class LineChartHelper {
       if (barData.spots.isEmpty) {
         continue;
       }
+      try{
+        if (barData.mostRightSpot.x > maxX) {
+          maxX = barData.mostRightSpot.x;
+        }
 
-      if (barData.mostRightSpot.x > maxX) {
-        maxX = barData.mostRightSpot.x;
-      }
+        if (barData.mostLeftSpot.x < minX) {
+          minX = barData.mostLeftSpot.x;
+        }
 
-      if (barData.mostLeftSpot.x < minX) {
-        minX = barData.mostLeftSpot.x;
-      }
+        if (barData.mostTopSpot.y > maxY) {
+          maxY = barData.mostTopSpot.y;
+        }
 
-      if (barData.mostTopSpot.y > maxY) {
-        maxY = barData.mostTopSpot.y;
-      }
-
-      if (barData.mostBottomSpot.y < minY) {
-        minY = barData.mostBottomSpot.y;
+        if (barData.mostBottomSpot.y < minY) {
+          minY = barData.mostBottomSpot.y;
+        }
+      }catch(_){
+        
       }
     }
 
