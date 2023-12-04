@@ -1,3 +1,59 @@
+## newVersion
+* **IMPROVEMENT** (by @imaNNeo) Add Flutter sdk constraints to the pubspec.yaml to force the user/developer to upgrade the Flutter version to 3.16.0 (latest), #1509
+* **IMPROVEMENT** (by @imaNNeo) Add `dotPainter` property to ScatterSpot to allow customizing the dot painter, #568
+* **BREAKING** (by @imaNNeo) Remove `color` and `radius` properties from ScatterSpot (use `dotPainter` instead), #568
+* **BREAKING** (by @imaNNeo) Change the default value of FlDotCirclePainter.`strokeWidth` to 0.0
+```dart
+/// Migration guide:
+/// This is the old way:
+ScatterSpot(
+  2,
+  5,
+  color: Colors.red,
+  radius: 12,
+)
+
+/// This is the new way:
+ScatterSpot(
+  2,
+  8,
+  dotPainter: FlDotCirclePainter(
+    color: Colors.red,
+    radius: 22,
+  ),
+),
+```
+* **BUGFIX** (by @imaNNeo) Fix barChart tooltip for values below or above the 0 point, #1462
+
+## 0.65.0
+* **FEATURE** (by @Dartek12) Added gradient to [FlLine](https://github.com/imaNNeo/fl_chart/blob/master/repo_files/documentations/base_chart.md#FlLine), #1197
+* **BUGFIX** (by @imaNNeo) Fix bar line shadow crash when we have only one (or zero) spot, #1466
+* **BUGFIX** (by @imaNNeo) Fix having negative `toY` (or positive `fromY`) in BarChart's `minY` and `maxY` calculations, #1470
+* **BUGFIX** (by @bobatsar) Fix bars drawn outside of diagram
+* **FEATURE** (by @k0psutin) Add dashed border to BarChartRodData, #1144
+* **FEATURE** (by @imaNNeo) Allow to show single point line in LineChart, #1438
+
+## 0.64.0
+* **BUGFIX** (by @Anas35) Fix Tooltip not displaying when value from BackgroundBarChartRodData is less than zero. #1345.
+* **BUGFIX** (by @imaNNeo) Fix Negative BarChartRodStackItem are not drawn correctly bug, #1347
+* **BUGFIX** (by @imaNNeo) Fix bar_chart_helper minY calculation bug, #1388
+* **IMPROVEMENT** (by @imaNNeo) Consider fraction digits when formatting chart side titles, #1267
+
+## 0.63.0
+* **BUGFIX** (by @imaNNeo) Fix PieChart crash on web-renderer html by ignoring `sectionsSpace` when `Path.combine()` does not work (it's flutter engine [issue](https://github.com/flutter/flutter/issues/44572)), #955
+* **BUGFIX** (by @imaNNeo) Fix ScatterChart long-press interaction bug (disappears when long-pressing on the chart), #1318
+* **FEATURE** (by @imaNNeo) Upgrade dart version to [3.0](https://dart.dev/resources/dart-3-migration)
+
+## 0.62.0
+* **BUGFIX** (by @JoshMart) Fix extra lines not painting when at chart min or max, #1255.
+* **BUGFIX** (by @imaNNeo) Check if mounted before calling setState in _handleBuiltInTouch methods in bar, line and scatter charts, #1101
+* **FEATURE** (by @MagdyYacoub1): Added gradient color to [RangeAnnotations](https://github.com/imaNNeo/fl_chart/blob/master/repo_files/documentations/base_chart.md#rangeannotations) by adding gradient attribute to [horizontalRangeAnnotations](https://github.com/imaNNeo/fl_chart/blob/master/repo_files/documentations/base_chart.md#horizontalrangeannotation) and [VerticalRangeAnnotation](https://github.com/imaNNeo/fl_chart/blob/master/repo_files/documentations/base_chart.md#verticalrangeannotation), #1195.
+* **BUGFIX** (by @Motionz-Von)Fix windows build for example app
+* **FEATURE** (by @Motionz-Von)BarChart groupSpace also takes effect when alignment is BarChartAlignment.end or BarChartAlignment.start.
+* **FEATURE** (by @Motionz-Von) supports setting line StrokeCap on HorizontalLine/VerticalLine
+* **BUGFIX** (by @nav-28) Fix radar chart tick and graph point not matching #1078
+* **IMPROVEMENT** (by @imaNNeo) Update LineChartSample5 to demonstrate click to toggle show/hide tooltip, #118
+
 ## 0.61.0
 * **IMPROVEMENT** (by @imaNNeo) Remove assertion to check to provide only one of `color` or `gradient` property in the [BarChartRodData](https://github.com/imaNNeo/fl_chart/blob/master/repo_files/documentations/bar_chart.md#barchartroddata) and [BackgroundBarChartRodData](https://github.com/imaNNeo/fl_chart/blob/master/repo_files/documentations/bar_chart.md#backgroundbarchartroddata), #1121.
 * **IMPROVEMENT** (by @imaNNeo) Make `drawBehindEverything` property default to `true` in [AxisTitles](https://github.com/imaNNeo/fl_chart/blob/master/repo_files/documentations/base_chart.md#axistitle) class, #1097.

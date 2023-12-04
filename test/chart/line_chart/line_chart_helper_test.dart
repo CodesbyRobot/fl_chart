@@ -43,7 +43,7 @@ void main() {
             FlSpot(-3, 50),
             FlSpot(14, -10),
           ],
-        )
+        ),
       ];
       final result = LineChartHelper.calculateMaxAxisValues(lineBars);
       expect(result.minX, -3);
@@ -69,10 +69,10 @@ void main() {
             FlSpot.nullSpot,
             FlSpot.nullSpot,
           ],
-        )
+        ),
       ];
       final result1 = LineChartHelper.calculateMaxAxisValues(lineBars);
-      expect(result1, LineChartMinMaxAxisValues(0, 0, 0, 0));
+      expect(result1, const LineChartMinMaxAxisValues(0, 0, 0, 0));
     });
 
     test('Test null spot 2', () {
@@ -84,10 +84,10 @@ void main() {
             FlSpot.nullSpot,
             const FlSpot(4, -3),
           ],
-        )
+        ),
       ];
       final result1 = LineChartHelper.calculateMaxAxisValues(lineBars);
-      expect(result1, LineChartMinMaxAxisValues(-1, 4, -3, 5));
+      expect(result1, const LineChartMinMaxAxisValues(-1, 4, -3, 5));
     });
   });
 }

@@ -22,8 +22,7 @@ When you change the chart's state, it animates to the new state internally (usin
 |lineBarsData| list of [LineChartBarData ](#LineChartBarData ) to show the chart's lines, they stack and can be drawn on top of each other|[]|
 |betweenBarsData| list of [BetweenBarsData](#BetweenBarsData ) to fill the area between 2 chart lines|[]|
 |titlesData| check the [FlTitlesData](base_chart.md#FlTitlesData)| FlTitlesData()|
-|axisTitleData| check the [FlAxisTitleData](base_chart.md#FlAxisTitleData)| FlAxisTitleData()|
-|extraLinesData| [ExtraLinesData](base_chart.md#ExtraLinesData) object to hold drawing details of extra horizontal and vertical lines. Check [ExtraLinesData](base_chart.md#ExtraLinesData)|
+|extraLinesData| [ExtraLinesData](base_chart.md#ExtraLinesData) object to hold drawing details of extra horizontal and vertical lines. Check [ExtraLinesData](base_chart.md#ExtraLinesData)|ExtraLinesData()|
 |lineTouchData| [LineTouchData](#linetouchdata-read-about-touch-handling) holds the touch interactivity details| LineTouchData()|
 |rangeAnnotations| show range annotations behind the chart, check [RangeAnnotations](base_chart.md#RangeAnnotations) | RangeAnnotations()|
 |showingTooltipIndicators| show the tooltip based on provided list of [LineBarSpot](#LineBarSpot)| [] |
@@ -154,7 +153,7 @@ When you change the chart's state, it animates to the new state internally (usin
 |:-------|:----------|:------------|
 |bar|the [LineChartBarData](#LineChartBarData) that contains a spot|null|
 |barIndex|index of the target [LineChartBarData](#LineChartBarData) inside [LineChartData](#LineChartData)|null|
-|spotIndex|index of the target [FlSpot](#FlSpot) inside [LineChartBarData](#LineChartBarData)|null|
+|spotIndex|index of the target [FlSpot](base_chart.md#FlSpot) inside [LineChartBarData](#LineChartBarData)|null|
 
 
 ### TouchLineBarSpot
@@ -162,7 +161,7 @@ When you change the chart's state, it animates to the new state internally (usin
 |:-------|:----------|:------------|
 |bar|the [LineChartBarData](#LineChartBarData) that contains a spot|null|
 |barIndex|index of the target [LineChartBarData](#LineChartBarData) inside [LineChartData](#LineChartData)|null|
-|spotIndex|index of the target [FlSpot](#FlSpot) inside [LineChartBarData](#LineChartBarData)|null|
+|spotIndex|index of the target [FlSpot](base_chart.md#FlSpot) inside [LineChartBarData](#LineChartBarData)|null|
 |distance|distance to the touch event|null|
 
 

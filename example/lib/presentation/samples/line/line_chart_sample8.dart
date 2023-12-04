@@ -33,10 +33,10 @@ class _LineChartSample8State extends State<LineChartSample8> {
     const rawSvg =
         '<svg height="14" width="14" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd" transform="translate(-.000014)"><circle cx="7" cy="7" fill="#495DFF" r="7"/><path d="m7 10.9999976c1.6562389 0 2.99998569-1.34374678 2.99998569-2.99999283s-1.34374679-4.99998808-2.99998569-4.99998808c-1.6562532 0-3 3.34374203-3 4.99998808s1.3437468 2.99999283 3 2.99999283z" fill="#fff" fill-rule="nonzero"/></g></svg>';
 
-    final svgRoot = await svg.fromSvgString(rawSvg, rawSvg);
+    final pictureInfo =
+        await vg.loadPicture(const SvgStringLoader(rawSvg), null);
 
-    final picture = svgRoot.toPicture();
-    final sizedPicture = SizedPicture(picture, 14, 14);
+    final sizedPicture = SizedPicture(pictureInfo.picture, 14, 14);
     return sizedPicture;
   }
 
@@ -188,7 +188,7 @@ class _LineChartSample8State extends State<LineChartSample8> {
           )
         ],
       ),
-      gridData: FlGridData(
+      gridData: const FlGridData(
         show: true,
         drawVerticalLine: false,
         drawHorizontalLine: false,
@@ -205,7 +205,7 @@ class _LineChartSample8State extends State<LineChartSample8> {
           ),
         ),
         leftTitles: AxisTitles(
-          drawBehindEverything: true,
+          drawBelowEverything: true,
           sideTitles: SideTitles(
             interval: 2,
             showTitles: true,
@@ -213,10 +213,10 @@ class _LineChartSample8State extends State<LineChartSample8> {
             reservedSize: 40,
           ),
         ),
-        rightTitles: AxisTitles(
+        rightTitles: const AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
-        topTitles: AxisTitles(
+        topTitles: const AxisTitles(
           sideTitles: SideTitles(showTitles: false),
         ),
       ),
@@ -226,7 +226,7 @@ class _LineChartSample8State extends State<LineChartSample8> {
             (LineChartBarData barData, List<int> spotIndexes) {
           return spotIndexes.map((spotIndex) {
             return TouchedSpotIndicatorData(
-              FlLine(color: AppColors.contentColorOrange, strokeWidth: 3),
+              const FlLine(color: AppColors.contentColorOrange, strokeWidth: 3),
               FlDotData(
                 getDotPainter: (spot, percent, barData, index) =>
                     FlDotCirclePainter(
@@ -237,7 +237,7 @@ class _LineChartSample8State extends State<LineChartSample8> {
             );
           }).toList();
         },
-        touchTooltipData: LineTouchTooltipData(
+        touchTooltipData: const LineTouchTooltipData(
           tooltipBgColor: AppColors.contentColorBlue,
         ),
       ),
@@ -270,7 +270,7 @@ class _LineChartSample8State extends State<LineChartSample8> {
           color: AppColors.contentColorRed,
           barWidth: 4,
           isStrokeCapRound: true,
-          dotData: FlDotData(
+          dotData: const FlDotData(
             show: false,
           ),
         ),

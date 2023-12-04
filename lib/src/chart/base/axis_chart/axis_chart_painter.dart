@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 /// [targetData] is the target data, that animation is going to show (if animating)
 abstract class AxisChartPainter<D extends AxisChartData>
     extends BaseChartPainter<D> {
-  AxisChartPainter() : super() {
+  AxisChartPainter() {
     _gridPaint = Paint()..style = PaintingStyle.stroke;
 
     _backgroundPaint = Paint()..style = PaintingStyle.fill;
@@ -73,20 +73,28 @@ abstract class AxisChartPainter<D extends AxisChartData>
         if (!data.gridData.checkToShowVerticalLine(axisValue)) {
           continue;
         }
-        final flLineStyle = data.gridData.getDrawingVerticalLine(axisValue);
-        _gridPaint
-          ..color = flLineStyle.color
-          ..strokeWidth = flLineStyle.strokeWidth
-          ..transparentIfWidthIsZero();
-
         final bothX = getPixelX(axisValue, viewSize, holder);
         final x1 = bothX;
         const y1 = 0.0;
         final x2 = bothX;
         final y2 = viewSize.height;
+        final from = Offset(x1, y1);
+        final to = Offset(x2, y2);
+
+        final flLineStyle = data.gridData.getDrawingVerticalLine(axisValue);
+        _gridPaint
+          ..setColorOrGradientForLine(
+            flLineStyle.color,
+            flLineStyle.gradient,
+            from: from,
+            to: to,
+          )
+          ..strokeWidth = flLineStyle.strokeWidth
+          ..transparentIfWidthIsZero();
+
         canvasWrapper.drawDashedLine(
-          Offset(x1, y1),
-          Offset(x2, y2),
+          from,
+          to,
           _gridPaint,
           flLineStyle.dashArray,
         );
@@ -111,19 +119,28 @@ abstract class AxisChartPainter<D extends AxisChartData>
           continue;
         }
         final flLine = data.gridData.getDrawingHorizontalLine(axisValue);
-        _gridPaint
-          ..color = flLine.color
-          ..strokeWidth = flLine.strokeWidth
-          ..transparentIfWidthIsZero();
 
         final bothY = getPixelY(axisValue, viewSize, holder);
         const x1 = 0.0;
         final y1 = bothY;
         final x2 = viewSize.width;
         final y2 = bothY;
+        final from = Offset(x1, y1);
+        final to = Offset(x2, y2);
+
+        _gridPaint
+          ..setColorOrGradientForLine(
+            flLine.color,
+            flLine.gradient,
+            from: from,
+            to: to,
+          )
+          ..strokeWidth = flLine.strokeWidth
+          ..transparentIfWidthIsZero();
+
         canvasWrapper.drawDashedLine(
-          Offset(x1, y1),
-          Offset(x2, y2),
+          from,
+          to,
           _gridPaint,
           flLine.dashArray,
         );
@@ -162,7 +179,11 @@ abstract class AxisChartPainter<D extends AxisChartData>
 
         final rect = Rect.fromPoints(from, to);
 
-        _rangeAnnotationPaint.color = annotation.color;
+        _rangeAnnotationPaint.setColorOrGradient(
+          annotation.color,
+          annotation.gradient,
+          rect,
+        );
 
         canvasWrapper.drawRect(rect, _rangeAnnotationPaint);
       }
@@ -179,7 +200,11 @@ abstract class AxisChartPainter<D extends AxisChartData>
 
         final rect = Rect.fromPoints(from, to);
 
-        _rangeAnnotationPaint.color = annotation.color;
+        _rangeAnnotationPaint.setColorOrGradient(
+          annotation.color,
+          annotation.gradient,
+          rect,
+        );
 
         canvasWrapper.drawRect(rect, _rangeAnnotationPaint);
       }
@@ -214,15 +239,22 @@ abstract class AxisChartPainter<D extends AxisChartData>
       final from = Offset(0, getPixelY(line.y, viewSize, holder));
       final to = Offset(viewSize.width, getPixelY(line.y, viewSize, holder));
 
-      final isLineBeingDrawnOutsideChart = from.dy <= 0 || to.dy <= 0;
-      final isLineBeingDrawnOnXAxis =
-          from.dy == viewSize.height || to.dy == viewSize.height;
+      final isLineOutsideOfChart = from.dy < 0 ||
+          to.dy < 0 ||
+          from.dy > viewSize.height ||
+          to.dy > viewSize.height;
 
-      if (!(isLineBeingDrawnOutsideChart || isLineBeingDrawnOnXAxis)) {
+      if (!isLineOutsideOfChart) {
         _extraLinesPaint
-          ..color = line.color
+          ..setColorOrGradientForLine(
+            line.color,
+            line.gradient,
+            from: from,
+            to: to,
+          )
           ..strokeWidth = line.strokeWidth
-          ..transparentIfWidthIsZero();
+          ..transparentIfWidthIsZero()
+          ..strokeCap = line.strokeCap;
 
         canvasWrapper.drawDashedLine(
           from,
@@ -299,72 +331,85 @@ abstract class AxisChartPainter<D extends AxisChartData>
       final from = Offset(getPixelX(line.x, viewSize, holder), 0);
       final to = Offset(getPixelX(line.x, viewSize, holder), viewSize.height);
 
-      _extraLinesPaint
-        ..color = line.color
-        ..strokeWidth = line.strokeWidth
-        ..transparentIfWidthIsZero();
+      final isLineOutsideOfChart = from.dx < 0 ||
+          to.dx < 0 ||
+          from.dx > viewSize.width ||
+          to.dx > viewSize.width;
 
-      canvasWrapper.drawDashedLine(
-        from,
-        to,
-        _extraLinesPaint,
-        line.dashArray,
-      );
+      if (!isLineOutsideOfChart) {
+        _extraLinesPaint
+          ..setColorOrGradientForLine(
+            line.color,
+            line.gradient,
+            from: from,
+            to: to,
+          )
+          ..strokeWidth = line.strokeWidth
+          ..transparentIfWidthIsZero()
+          ..strokeCap = line.strokeCap;
 
-      if (line.sizedPicture != null) {
-        final centerX = line.sizedPicture!.width / 2;
-        final centerY = line.sizedPicture!.height / 2;
-        final xPosition = to.dx - centerX;
-        final yPosition = viewSize.height - centerY;
-
-        canvasWrapper
-          ..save()
-          ..translate(xPosition, yPosition)
-          ..drawPicture(line.sizedPicture!.picture)
-          ..restore();
-      }
-
-      if (line.image != null) {
-        final centerX = line.image!.width / 2;
-        final centerY = line.image!.height + 2;
-        final centeredImageOffset =
-            Offset(to.dx - centerX, viewSize.height - centerY);
-        canvasWrapper.drawImage(
-          line.image!,
-          centeredImageOffset,
-          _imagePaint,
-        );
-      }
-
-      if (line.label.show) {
-        final label = line.label;
-        final style =
-            TextStyle(fontSize: 11, color: line.color).merge(label.style);
-        final padding = label.padding as EdgeInsets;
-
-        final span = TextSpan(
-          text: label.labelResolver(line),
-          style: Utils().getThemeAwareTextStyle(context, style),
+        canvasWrapper.drawDashedLine(
+          from,
+          to,
+          _extraLinesPaint,
+          line.dashArray,
         );
 
-        final tp = TextPainter(
-          text: span,
-          textDirection: TextDirection.ltr,
-        );
-        // ignore: cascade_invocations
-        tp.layout();
+        if (line.sizedPicture != null) {
+          final centerX = line.sizedPicture!.width / 2;
+          final centerY = line.sizedPicture!.height / 2;
+          final xPosition = to.dx - centerX;
+          final yPosition = viewSize.height - centerY;
 
-        canvasWrapper.drawText(
-          tp,
-          label.alignment.withinRect(
-            Rect.fromLTRB(
-              to.dx - padding.right - tp.width,
-              from.dy + padding.top,
-              from.dx + padding.left,
-              to.dy - padding.bottom,
+          canvasWrapper
+            ..save()
+            ..translate(xPosition, yPosition)
+            ..drawPicture(line.sizedPicture!.picture)
+            ..restore();
+        }
+
+        if (line.image != null) {
+          final centerX = line.image!.width / 2;
+          final centerY = line.image!.height + 2;
+          final centeredImageOffset =
+              Offset(to.dx - centerX, viewSize.height - centerY);
+          canvasWrapper.drawImage(
+            line.image!,
+            centeredImageOffset,
+            _imagePaint,
+          );
+        }
+
+        if (line.label.show) {
+          final label = line.label;
+          final style =
+              TextStyle(fontSize: 11, color: line.color).merge(label.style);
+          final padding = label.padding as EdgeInsets;
+
+          final span = TextSpan(
+            text: label.labelResolver(line),
+            style: Utils().getThemeAwareTextStyle(context, style),
+          );
+
+          final tp = TextPainter(
+            text: span,
+            textDirection: TextDirection.ltr,
+          );
+          // ignore: cascade_invocations
+          tp.layout();
+
+          canvasWrapper.drawText(
+            tp,
+            label.alignment.withinRect(
+              Rect.fromLTRB(
+                to.dx - padding.right - tp.width,
+                from.dy + padding.top,
+                from.dx + padding.left,
+                to.dy - padding.bottom,
+              ),
             ),
-          ),
-        );
+          );
+        }
       }
     }
   }

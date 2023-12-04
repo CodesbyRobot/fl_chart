@@ -1,27 +1,19 @@
-----
-This is a temporary and a **very important** message:
+📊 FL Chart is a highly customizable Flutter chart library that supports **[Line Chart](https://app.flchart.dev/#/line)**, **[Bar Chart](https://app.flchart.dev/#/bar)**, **[Pie Chart](https://app.flchart.dev/#/pie)**, **[Scatter Chart](https://app.flchart.dev/#/scatter)**, and **[Radar Chart](https://app.flchart.dev/#/radar)**.
 
-![Iran needs help](https://github.com/imaNNeo/fl_chart/raw/master/repo_files/images/tmp_iran_banner.png)
+✅ Do you want to **motivate me to work more on fl_chart?** You can **[donate me](https://github.com/imaNNeo/fl_chart#donation)** ;)
 
-([#MahsaAmini](https://twitter.com/search?q=%23MahsaAmini&src=typeahead_click) |
-[IranRevoIution](https://twitter.com/search?q=%23IranRevoIution&src=typeahead_click) |
-[مهسا_امینی](https://twitter.com/search?q=%23%D9%85%D9%87%D8%B3%D8%A7_%D8%A7%D9%85%DB%8C%D9%86%DB%8C&src=typeahead_click&f=top))
-------
-💥 FL Chart is a highly customizable Flutter chart library that supports Line Chart, Bar Chart, Pie Chart, Scatter Chart, and Radar Chart.  💥
-
-<a href="https://www.buymeacoffee.com/fl_chart"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=fl_chart&button_colour=5F7FFF&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a>
+![FL Chart Logo](https://github.com/imaNNeo/fl_chart/raw/master/repo_files/images/landing_logo.jpg)
 
 [![pub package](https://img.shields.io/pub/v/fl_chart.svg)](https://pub.dartlang.org/packages/fl_chart)
 [![codecov](https://codecov.io/gh/imaNNeo/fl_chart/branch/master/graph/badge.svg?token=XBhsIZBbZG)](https://codecov.io/gh/imaNNeo/fl_chart)
 <a href="https://github.com/Solido/awesome-flutter#charts"><img src="https://img.shields.io/badge/awesome-flutter-blue.svg?longCache=true" alt="Awesome Flutter"></a>
 <a href="https://pub.dev/packages/fl_chart"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/imaNNeo/fl_chart"></a>
 <a href="https://github.com/imaNNeo/fl_chart/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/imaNNeo/fl_chart"></a>
-<a href="https://github.com/imaNNeo/fl_chart/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed-raw/imaNNeo/fl_chart" alt="GitHub closed issues"></a>
+<a href="https://githubc.com/imaNNeo/fl_chart/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed-raw/imaNNeo/fl_chart" alt="GitHub closed issues"></a>
+![GitHub Sponsors](https://img.shields.io/github/sponsors/imaNNeo) 
 <span class="badge-buymeacoffee">
 <a href="https://www.buymeacoffee.com/fl_chart" title="Donate to this project using Buy Me A Coffee"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg" alt="Buy Me A Coffee donate button" /></a>
 </span>
-
-![FL Chart Logo](https://github.com/imaNNeo/fl_chart/raw/master/repo_files/images/landing_logo.jpg)
 
 ### Chart Types
 
@@ -62,13 +54,11 @@ We suggest you to check samples source code.
 
 ### Donation
 Your donation **motivates** me to work more on the **fl_chart** and resolve more issues.
-You can <a href="https://www.buymeacoffee.com/fl_chart">buy me a coffee!</a>
+There are multiple ways to donate me:
 
-<a href="https://www.buymeacoffee.com/fl_chart"><img src="https://github.com/imaNNeo/fl_chart/raw/master/repo_files/images/buy_me_a_coffee.jpeg" width=360 /></a>
-
-Or if you are a fan of crypto, you can donate me Bitcoins here:
-
-`1L7ghKdcmgydmUJAnmYmMaiVjT1LoP4a45`
+1. You can be my sponsor on [GitHub](https://github.com/sponsors/imaNNeo) (This is the most reliable way to donate me)
+2. You can <a href="https://www.buymeacoffee.com/fl_chart">buy me a coffee!</a>
+3. Or if you are a fan of crypto, you can donate me Bitcoins here: `1L7ghKdcmgydmUJAnmYmMaiVjT1LoP4a45`
 
 ### Contributing
 ##### :beer: Pull requests are welcome!

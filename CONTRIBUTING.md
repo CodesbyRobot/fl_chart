@@ -61,10 +61,10 @@ You can simply run `make checkstyle`, and if you faced any formatting problem, r
 
 ##### Run `make checkstyle` to ensure that your code is formatted correctly
 - It runs `flutter analyze` to verify that there is no any warning or error.
-- It runs `flutter format --set-exit-if-changed --dry-run .` to verify that code has formatted correctly.
+- It runs `dart format --set-exit-if-changed --dry-run .` to verify that code has formatted correctly.
 
 #### Run `make format` to reformat the code
-- It runs `flutter format .` to format your code.
+- It runs `dart format .` to format your code.
 
 
 #### Run `make runTests` to ensure that all tests are passing.
@@ -84,29 +84,6 @@ Our code coverage is calculated by [Codecov](https://app.codecov.io/gh/imaNNeo/f
 When you push something in your PR (after approving your PR by one of us), you see a coverage report which describes how much coverage is increased or decreased by your code (You can check the details to see which part of your code made the change). 
 
 Please make sure that your code is **not decreasing** the coverage.
-
-## Changelog
-We have a file called [CHANGELOG.md](https://github.com/imaNNeo/fl_chart/blob/master/CHANGELOG.md) which contains the history of our versions.
-
-Please check it to understand how it works and how is the convention. Simply new versions added at the top of the CHANGELOG.md file. You can find the [first version (oldest)](https://github.com/imaNNeo/fl_chart/blob/master/CHANGELOG.md#001---released-on-2019-june-4) at the bottom of the file.
-
-When you are done in your PR, it's time to write a changelog for you changes. 
-
-Most of the times, there will be a [newVersion](https://github.com/imaNNeo/fl_chart/blob/master/CHANGELOG.md#newversion) tag at the top of the `CHANGELOG.md` file in the `master` branch. If it doesn't exist, you can write it and write your change below that.
-
-Each change should be started with one of the following prefixes:
-1. **IMPROVEMENT** (When you are improving something, for example improving performance)
-
-2. **BREAKING** (When it breaks something, for example renaming something to something else, or removing something, ...)
-
-3. **BUGFIX** (When you fix a bug or an issue)
-
-4. **FEATURE** (When you are adding a feature to the library, for example allowing user to change the stroke color of something, or when you add a new concept or anything else)
-
-In front of a prefix, you should write about your change. Don't forget to mention the related issues.
-
-If your change has two (or more) prefixes, describe them in separate lines independently.
-
 
 ## Creating a Pull Request
 
